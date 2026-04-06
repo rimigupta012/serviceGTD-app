@@ -21,9 +21,6 @@ export default function Home() {
           <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-teal/20 rounded-full blur-[100px]" />
         </div>
         <div className="max-w-5xl mx-auto px-4 py-20 sm:py-28 lg:py-36 relative text-center">
-          <p className="text-primary-light font-semibold text-sm sm:text-base tracking-widest uppercase mb-6">
-            For NRIs, by NRIs
-          </p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-serif leading-tight">
             Caring for Your Parents in India,
           </h1>
@@ -151,22 +148,22 @@ export default function Home() {
               {
                 title: 'Your Personal Care Manager',
                 desc: 'A single point of contact who knows your family, coordinates every service, and keeps you updated — like a trusted family member on the ground.',
-                emoji: '🤝',
+                img: 'https://inforeasolutions.com/gtd/wp-content/uploads/2026/03/Care-That-Feels-Personal4.jpg',
               },
               {
                 title: 'Weekly Video Updates',
                 desc: 'See your parents\' daily life through regular video reports — their meals, health metrics, walks, and moments of joy. Bridge the distance with real visibility.',
-                emoji: '📹',
+                img: 'https://inforeasolutions.com/gtd/wp-content/uploads/2026/03/Care-That-Feels-Personal5.jpg',
               },
               {
                 title: 'Timezone-Aware Support',
                 desc: 'Our team operates across IST, PST, GMT, and SGT. Your 2 AM anxiety gets a 2 AM response — because worry doesn\'t follow business hours.',
-                emoji: '🌍',
+                img: 'https://inforeasolutions.com/gtd/wp-content/uploads/2026/03/Care-That-Feels-Personal6.jpg',
               },
             ].map((item, i) => (
-              <div key={i} className="bg-white rounded-[14px] overflow-hidden shadow-sm hover:shadow-lg transition-all">
-                <div className="h-48 bg-gradient-to-br from-primary-50 to-teal-50 flex items-center justify-center">
-                  <span className="text-6xl">{item.emoji}</span>
+              <div key={i} className="bg-white rounded-[14px] overflow-hidden shadow-sm hover:shadow-lg transition-all group">
+                <div className="h-56 overflow-hidden">
+                  <img src={item.img} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div className="p-6">
                   <h3 className="text-lg font-bold text-navy">{item.title}</h3>
@@ -233,12 +230,16 @@ export default function Home() {
               className="aspect-video rounded-2xl overflow-hidden shadow-xl cursor-pointer relative group"
               onClick={() => setShowVideo(true)}
             >
+              <img
+                src="https://img.youtube.com/vi/VhBl3dHT5SY/maxresdefault.jpg"
+                alt="Watch Our Trust Story"
+                className="w-full h-full object-cover"
+              />
               <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition">
                 <div className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition">
                   <span className="text-primary text-3xl ml-1">▶</span>
                 </div>
               </div>
-              <div className="w-full h-full bg-gradient-to-br from-primary/20 to-teal/20" />
             </div>
             <div className="text-center mt-8">
               <button
@@ -288,8 +289,12 @@ export default function Home() {
 
             {/* Image placeholder / Stats */}
             <div>
-              <div className="bg-gradient-to-br from-primary-50 to-teal-50 rounded-2xl h-80 flex items-center justify-center mb-8">
-                <span className="text-8xl opacity-30">🛡️</span>
+              <div className="rounded-2xl h-80 overflow-hidden mb-8">
+                <img
+                  src="https://inforeasolutions.com/gtd/wp-content/uploads/2026/03/Our-6-Step-Partner-Verification1.jpg"
+                  alt="6-Step Partner Verification"
+                  className="w-full h-full object-cover rounded-2xl"
+                />
               </div>
               <div className="grid grid-cols-3 gap-4">
                 {[
@@ -426,16 +431,18 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {blogPosts.slice(0, 3).map((post) => (
+            {blogPosts.slice(0, 3).map((post, idx) => (
               <Link
                 key={post.slug}
                 to={`/blog/${post.slug}`}
                 className="group rounded-[14px] border border-primary/10 bg-white overflow-hidden shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)] hover:shadow-xl transition-all"
               >
-                <div className="aspect-[16/10] bg-gradient-to-br from-primary-50 to-teal-50 flex items-center justify-center overflow-hidden">
-                  <span className="text-6xl opacity-30 group-hover:scale-110 transition-transform duration-300">
-                    {post.image === 'surgery' ? '🏥' : post.image === 'caretaker' ? '👩‍⚕️' : '💊'}
-                  </span>
+                <div className="aspect-[16/10] overflow-hidden">
+                  <img
+                    src={`https://inforeasolutions.com/gtd/wp-content/uploads/2026/02/blog${idx + 1}.jpg`}
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <div className="p-6">
                   <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
