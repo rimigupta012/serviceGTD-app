@@ -15,18 +15,8 @@ export default function Home() {
   return (
     <>
       {/* ===== HERO ===== */}
-      <section className="relative overflow-hidden text-white">
-        {/* Background image */}
-        <div className="absolute inset-0">
-          <img
-            src="https://inforeasolutions.com/gtd/wp-content/uploads/2026/02/Image-ServiceGTD.jpg"
-            alt=""
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a14]/85 via-[#12101f]/80 to-[#1a1530]/90" />
-        </div>
-        {/* Glow effects */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#0a0a14] via-[#12101f] to-[#1a1530] text-white">
+        <div className="absolute inset-0 opacity-20">
           <div className="absolute top-10 left-1/4 w-96 h-96 bg-primary/30 rounded-full blur-[120px]" />
           <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-teal/20 rounded-full blur-[100px]" />
         </div>
@@ -80,21 +70,11 @@ export default function Home() {
       </section>
 
       {/* ===== SERVICES ===== */}
-      <section className="py-16 sm:py-24 relative overflow-hidden" id="services">
-        {/* Background image with overlay */}
-        <div className="absolute inset-0">
-          <img
-            src="https://inforeasolutions.com/gtd/wp-content/uploads/2026/03/Care-That-Feels-Personal4.jpg"
-            alt=""
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-[#0f0b1e]/90" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 relative">
+      <section className="py-16 sm:py-24" id="services">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-bold font-serif text-white">Comprehensive Care Services</h2>
-            <p className="mt-4 text-gray-300 max-w-2xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl font-bold font-serif text-navy">Comprehensive Care Services</h2>
+            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
               A complete care ecosystem designed for NRI families — so you never have to
               coordinate multiple providers again.
             </p>
@@ -125,23 +105,23 @@ export default function Home() {
             ].map((svc, i) => (
               <div
                 key={i}
-                className="relative rounded-[14px] backdrop-blur-[51px] p-8 transition-all duration-300 group hover:scale-[1.02]"
-                style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.1)' }}
+                className="relative rounded-[14px] border border-white/10 bg-white/[0.08] backdrop-blur-[51px] p-8 hover:bg-white/[0.12] transition-all duration-300 group"
+                style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(107,70,193,0.1)' }}
               >
                 <span className="text-4xl block mb-5">{svc.icon}</span>
-                <h3 className="text-xl font-bold text-white">{svc.title}</h3>
-                <p className="text-sm text-gray-400 mt-2 leading-relaxed">{svc.desc}</p>
+                <h3 className="text-xl font-bold text-navy">{svc.title}</h3>
+                <p className="text-sm text-gray-500 mt-2 leading-relaxed">{svc.desc}</p>
                 <ul className="mt-5 space-y-2.5">
                   {svc.items.map((item, j) => (
-                    <li key={j} className="flex items-center gap-2.5 text-sm text-gray-300">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary-light shrink-0" />
+                    <li key={j} className="flex items-center gap-2.5 text-sm text-gray-700">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
                       {item}
                     </li>
                   ))}
                 </ul>
                 <Link
                   to={svc.link}
-                  className="inline-flex items-center gap-1.5 mt-6 text-sm font-semibold text-primary-light group-hover:gap-2.5 transition-all"
+                  className="inline-flex items-center gap-1.5 mt-6 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all"
                 >
                   Learn More <HiArrowRight className="w-4 h-4" />
                 </Link>
