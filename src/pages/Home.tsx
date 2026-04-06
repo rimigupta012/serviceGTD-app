@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { HiArrowRight, HiPlay, HiShieldCheck, HiUserGroup, HiClock, HiHeart } from 'react-icons/hi'
+import { HiArrowRight, HiShieldCheck, HiLockClosed } from 'react-icons/hi'
 import { FaWhatsapp } from 'react-icons/fa'
-import SectionHeading from '../components/SectionHeading'
 import StatsCounter from '../components/StatsCounter'
 import TestimonialCard from '../components/TestimonialCard'
 import FAQAccordion from '../components/FAQAccordion'
 import ConsultationModal from '../components/ConsultationModal'
-import { testimonials, faqs, howItWorksSteps, pricingPlans } from '../data/content'
+import { testimonials, faqs, blogPosts } from '../data/content'
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false)
@@ -16,89 +15,57 @@ export default function Home() {
   return (
     <>
       {/* ===== HERO ===== */}
-      <section className="gradient-hero relative overflow-hidden">
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-teal/10 rounded-full blur-3xl" />
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#0a0a14] via-[#12101f] to-[#1a1530] text-white">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 left-1/4 w-96 h-96 bg-primary/30 rounded-full blur-[120px]" />
+          <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-teal/20 rounded-full blur-[100px]" />
         </div>
-        <div className="max-w-7xl mx-auto px-4 py-16 sm:py-20 lg:py-28 relative">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Emotional Hindi tagline */}
-            <p className="text-primary font-medium mb-4 text-sm sm:text-base tracking-wide">
-              "Dooriyan chahe kitni bhi ho, apnon ka khayal rakhna zaroori hai" 🙏
-            </p>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold font-serif text-navy leading-tight">
-              Caring for Your Parents in India,{' '}
-              <span className="text-gradient">No Matter Where You Live</span>
-            </h1>
-            <p className="mt-6 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              End-to-end managed elder care — from daily check-ins to emergency response.
-              So you can live your life abroad, without the guilt.
-            </p>
+        <div className="max-w-5xl mx-auto px-4 py-20 sm:py-28 lg:py-36 relative text-center">
+          <p className="text-primary-light font-semibold text-sm sm:text-base tracking-widest uppercase mb-6">
+            For NRIs, by NRIs
+          </p>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-serif leading-tight">
+            Caring for Your Parents in India,
+          </h1>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-serif leading-tight mt-2 text-gradient">
+            No Matter Where You Live
+          </h1>
+          <p className="mt-8 text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+            End-to-end managed elder care designed exclusively for NRI families. From clinical support to daily assistance,
+            we ensure your parents receive trusted, professional care — with complete peace of mind.
+          </p>
 
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button
-                onClick={() => setShowModal(true)}
-                className="w-full sm:w-auto bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full text-lg font-semibold transition-all hover:shadow-xl hover:shadow-primary/25 flex items-center justify-center gap-2"
-              >
-                Talk to an Advisor — It's Free
-                <HiArrowRight className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => setShowVideo(true)}
-                className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 text-gray-700 hover:text-primary transition group"
-              >
-                <span className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center group-hover:shadow-xl transition">
-                  <HiPlay className="w-5 h-5 text-primary ml-0.5" />
-                </span>
-                Watch Our Story
-              </button>
-            </div>
-
-            {/* Trust Indicators */}
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
-              <span className="flex items-center gap-1.5"><HiShieldCheck className="w-4 h-4 text-teal" /> Verified Care Partners</span>
-              <span className="flex items-center gap-1.5"><HiClock className="w-4 h-4 text-teal" /> 24/7 Emergency Support</span>
-              <span className="flex items-center gap-1.5"><HiHeart className="w-4 h-4 text-teal" /> 5,000+ Happy Families</span>
-            </div>
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <button
+              onClick={() => setShowModal(true)}
+              className="w-full sm:w-auto bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full text-lg font-semibold transition-all hover:shadow-xl hover:shadow-primary/30 flex items-center justify-center gap-2"
+            >
+              Talk to an Advisor
+              <HiArrowRight className="w-5 h-5" />
+            </button>
+            <Link
+              to="/care-assessment"
+              className="w-full sm:w-auto border border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-full text-lg font-medium transition flex items-center justify-center gap-2"
+            >
+              Start Care Planning
+            </Link>
           </div>
+
+          {/* Trust badges */}
+          <p className="mt-8 text-sm text-gray-400">
+            Confidential consultation &bull; No pressure &bull; Advisory-first approach
+          </p>
 
           {/* Stats */}
-          <div className="mt-16 bg-white rounded-2xl shadow-lg p-8 sm:p-10">
-            <StatsCounter
-              stats={[
-                { value: 45, suffix: '+', label: 'Cities Across India' },
-                { value: 100, suffix: '+', label: 'Verified Partners' },
-                { value: 5000, suffix: '+', label: 'NRI Families Served' },
-                { value: 98, suffix: '%', label: 'Satisfaction Rate' },
-              ]}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ===== EMOTIONAL NRI SECTION ===== */}
-      <section className="py-16 sm:py-20 bg-warm">
-        <div className="max-w-5xl mx-auto px-4 text-center">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-navy leading-snug">
-            "Every missed call from home makes your heart skip a beat.<br className="hidden sm:block" />
-            <span className="text-primary">We understand. We've been there too.</span>"
-          </h2>
-          <p className="mt-6 text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
-            ServiceGTD was founded by Navneet Gupta — an NRI who spent years carrying the quiet guilt of being
-            away from his parents. When he looked around, he saw millions sharing the same struggle.
-            Every service, every process, every late-night WhatsApp reply — it comes from that shared promise.
-          </p>
-          <div className="mt-8 grid sm:grid-cols-3 gap-6">
+          <div className="mt-16 grid grid-cols-3 gap-6 max-w-2xl mx-auto">
             {[
-              { icon: '🌙', title: 'Late Night Worries?', desc: 'Our team operates across timezones. Your 2 AM worry is our morning priority.' },
-              { icon: '📱', title: 'One Call Away', desc: 'WhatsApp your Care Manager anytime. Average response: under 5 minutes.' },
-              { icon: '👁️', title: 'See for Yourself', desc: 'Weekly video updates of your parents — their meals, walks, health, smiles.' },
-            ].map((item, i) => (
-              <div key={i} className="bg-white rounded-xl p-6 shadow-sm">
-                <span className="text-3xl">{item.icon}</span>
-                <h3 className="font-bold text-navy mt-3">{item.title}</h3>
-                <p className="text-sm text-gray-600 mt-2">{item.desc}</p>
+              { value: '45+', label: 'Cities Served' },
+              { value: '100+', label: 'Handpicked Service Partners' },
+              { value: '1', label: 'Dedicated Care Manager' },
+            ].map((stat, i) => (
+              <div key={i} className="text-center">
+                <p className="text-3xl sm:text-4xl font-bold text-white">{stat.value}</p>
+                <p className="text-xs sm:text-sm text-gray-400 mt-1">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -106,221 +73,469 @@ export default function Home() {
       </section>
 
       {/* ===== SERVICES ===== */}
-      <section className="py-16 sm:py-20" id="services">
+      <section className="py-16 sm:py-24" id="services">
         <div className="max-w-7xl mx-auto px-4">
-          <SectionHeading
-            badge="What We Do"
-            title="Comprehensive Care, Managed End-to-End"
-            subtitle="From medical needs to daily companionship to managing your Indian property — we handle everything so you don't have to worry."
-          />
+          <div className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-bold font-serif text-navy">Comprehensive Care Services</h2>
+            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+              A complete care ecosystem designed for NRI families — so you never have to
+              coordinate multiple providers again.
+            </p>
+          </div>
           <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
             {[
-              { icon: '🏥', title: 'Clinical Care', tagline: 'Hospital-grade care in the comfort of home.', link: '/services/clinical-care', gradient: 'from-primary-50 to-white', border: 'hover:border-primary/30', iconBg: 'bg-primary-100' },
-              { icon: '🏠', title: 'Daily Assistance', tagline: 'Everyday support that feels like family.', link: '/services/daily-assistance', gradient: 'from-teal-50 to-white', border: 'hover:border-teal/30', iconBg: 'bg-teal-50' },
-              { icon: '🌏', title: 'NRI Services', tagline: 'Your eyes, ears & hands in India.', link: '/services/nri-services', gradient: 'from-warm to-white', border: 'hover:border-saffron/30', iconBg: 'bg-warm-100' },
+              {
+                icon: '🏥',
+                title: 'Clinical Care',
+                desc: 'Professional medical support at home with verified, hospital-trained healthcare providers.',
+                items: ['Nursing Care', 'ICU at Home', 'Physiotherapy', 'Palliative Support'],
+                link: '/services/clinical-care',
+              },
+              {
+                icon: '🏠',
+                title: 'Daily Assistance',
+                desc: 'Comprehensive support for everyday needs, companionship, and emotional well-being.',
+                items: ['Full-time Caretakers', 'Care Concierge', 'Post-Surgery Support', 'Daily Check-ins'],
+                link: '/services/daily-assistance',
+              },
+              {
+                icon: '🌏',
+                title: 'Other NRI Services',
+                desc: 'Additional support services tailored for families managing responsibilities from abroad.',
+                items: ['Property Management', 'Legal Assistance', 'Financial Planning', 'Travel Coordination'],
+                link: '/services/nri-services',
+              },
             ].map((svc, i) => (
-              <Link
+              <div
                 key={i}
-                to={svc.link}
-                className={`group rounded-2xl border border-gray-100 ${svc.border} bg-gradient-to-br ${svc.gradient} p-8 sm:p-10 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1`}
+                className="relative rounded-[14px] border border-white/10 bg-white/[0.08] backdrop-blur-[51px] p-8 hover:bg-white/[0.12] transition-all duration-300 group"
+                style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(107,70,193,0.1)' }}
               >
-                <div className={`w-16 h-16 rounded-2xl ${svc.iconBg} flex items-center justify-center text-3xl mx-auto`}>
-                  {svc.icon}
-                </div>
-                <h3 className="text-xl font-bold text-navy mt-5">{svc.title}</h3>
-                <p className="text-gray-600 mt-2 text-sm">{svc.tagline}</p>
-                <span className="inline-flex items-center gap-1.5 mt-5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all">
+                <span className="text-4xl block mb-5">{svc.icon}</span>
+                <h3 className="text-xl font-bold text-navy">{svc.title}</h3>
+                <p className="text-sm text-gray-500 mt-2 leading-relaxed">{svc.desc}</p>
+                <ul className="mt-5 space-y-2.5">
+                  {svc.items.map((item, j) => (
+                    <li key={j} className="flex items-center gap-2.5 text-sm text-gray-700">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  to={svc.link}
+                  className="inline-flex items-center gap-1.5 mt-6 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all"
+                >
                   Learn More <HiArrowRight className="w-4 h-4" />
-                </span>
-              </Link>
+                </Link>
+              </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== CARE PHILOSOPHY ===== */}
+      <section className="py-16 sm:py-24 bg-gray-light">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-bold font-serif text-navy">
+              Care That Feels Personal.<br className="hidden sm:block" /> Support That Feels Structured.
+            </h2>
+            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+              Every family's situation is unique. That's why we combine human compassion with a
+              managed system built on trust, transparency, and accountability.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                title: 'Your Personal Care Manager',
+                desc: 'A single point of contact who knows your family, coordinates every service, and keeps you updated — like a trusted family member on the ground.',
+                emoji: '🤝',
+              },
+              {
+                title: 'Weekly Video Updates',
+                desc: 'See your parents\' daily life through regular video reports — their meals, health metrics, walks, and moments of joy. Bridge the distance with real visibility.',
+                emoji: '📹',
+              },
+              {
+                title: 'Timezone-Aware Support',
+                desc: 'Our team operates across IST, PST, GMT, and SGT. Your 2 AM anxiety gets a 2 AM response — because worry doesn\'t follow business hours.',
+                emoji: '🌍',
+              },
+            ].map((item, i) => (
+              <div key={i} className="bg-white rounded-[14px] overflow-hidden shadow-sm hover:shadow-lg transition-all">
+                <div className="h-48 bg-gradient-to-br from-primary-50 to-teal-50 flex items-center justify-center">
+                  <span className="text-6xl">{item.emoji}</span>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-bold text-navy">{item.title}</h3>
+                  <p className="text-sm text-gray-600 mt-2 leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== COVERAGE ===== */}
+      <section className="py-16 sm:py-20">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold font-serif text-navy">
+            45+ Cities. 100+ Handpicked Partners.
+          </h2>
+          <p className="mt-4 text-gray-600 max-w-xl mx-auto">
+            A structured, managed care system designed specifically for families living abroad —
+            covering every major city and growing rapidly into Tier-2 towns.
+          </p>
+          <Link
+            to="/locations"
+            className="inline-flex items-center gap-2 mt-8 bg-primary hover:bg-primary-dark text-white px-8 py-3.5 rounded-full font-semibold transition-all hover:shadow-lg hover:shadow-primary/25"
+          >
+            Explore Our Managed Approach <HiArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </section>
+
+      {/* ===== TRUST & ETHICS ===== */}
+      <section className="py-16 sm:py-24" id="trust">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-bold font-serif text-navy">Built on Trust, Driven by Ethics</h2>
+            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+              We understand the weight of trusting someone with your parents' care.
+              That's why trust and ethics aren't just values — they're our operating system.
+            </p>
+          </div>
+
+          {/* 4 Trust Cards */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {[
+              { icon: '🔍', title: 'Rigorous Verification', desc: 'Every partner undergoes our 6-step background check including criminal records, skill assessments, and in-person evaluations.' },
+              { icon: '⚖️', title: 'Ethics First', desc: 'No commissions, no kickbacks, no bias. We recommend only what genuinely serves your parents\' best interest.' },
+              { icon: '🔒', title: 'Privacy Protected', desc: 'Military-grade data encryption and strict confidentiality at every step of the care journey. Your family\'s data is sacred.' },
+              { icon: '🤝', title: 'Advisory-First', desc: 'We guide, not sell. Your peace of mind is our only metric of success. Free consultations, zero pressure.' },
+            ].map((card, i) => (
+              <div key={i} className="bg-white rounded-[14px] border border-gray-100 p-6 hover:shadow-lg transition-all text-center">
+                <span className="text-3xl block mb-4">{card.icon}</span>
+                <h3 className="font-bold text-navy text-lg">{card.title}</h3>
+                <p className="text-sm text-gray-600 mt-2 leading-relaxed">{card.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Video + CTA */}
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-6">
+              <h3 className="text-xl font-bold text-navy">Watch Our Trust Story</h3>
+            </div>
+            <div
+              className="aspect-video rounded-2xl overflow-hidden shadow-xl cursor-pointer relative group"
+              onClick={() => setShowVideo(true)}
+            >
+              <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition">
+                <div className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+                  <span className="text-primary text-3xl ml-1">▶</span>
+                </div>
+              </div>
+              <div className="w-full h-full bg-gradient-to-br from-primary/20 to-teal/20" />
+            </div>
+            <div className="text-center mt-8">
+              <button
+                onClick={() => setShowModal(true)}
+                className="bg-primary hover:bg-primary-dark text-white px-8 py-3.5 rounded-full font-semibold transition-all hover:shadow-lg hover:shadow-primary/25"
+              >
+                Talk to an Advisor
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== 6-STEP VERIFICATION ===== */}
+      <section className="py-16 sm:py-24 bg-gray-light">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-bold font-serif text-navy">Our 6-Step Partner Verification</h2>
+            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+              We understand the responsibility of caring for your loved ones. That's why every care partner
+              must pass the most rigorous screening process in the industry.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-10 items-start">
+            {/* Steps */}
+            <div className="space-y-4">
+              {[
+                { title: 'Background Checks', desc: 'Criminal record, employment history, and credential verification through government databases.' },
+                { title: 'Feedback Review', desc: 'Thorough analysis of past client testimonials, service ratings, and professional references.' },
+                { title: 'In-Person Evaluation', desc: 'Direct interviews and hands-on skills assessment conducted by our senior care team.' },
+                { title: 'Legal Compliance', desc: 'License validation, insurance verification, and regulatory requirement checks.' },
+                { title: 'Standards Alignment', desc: 'Ensuring adherence to ServiceGTD\'s quality benchmarks, care protocols, and ethical guidelines.' },
+                { title: 'Ongoing Monitoring', desc: 'Continuous performance tracking, surprise audits, and quality reviews every quarter.' },
+              ].map((step, i) => (
+                <div key={i} className="flex gap-4 bg-white rounded-xl p-5 shadow-sm">
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0 ${i % 2 === 0 ? 'bg-primary' : 'bg-teal'}`}>
+                    {i + 1}
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-navy">{step.title}</h4>
+                    <p className="text-sm text-gray-600 mt-1">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Image placeholder / Stats */}
+            <div>
+              <div className="bg-gradient-to-br from-primary-50 to-teal-50 rounded-2xl h-80 flex items-center justify-center mb-8">
+                <span className="text-8xl opacity-30">🛡️</span>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                {[
+                  { value: '12%', label: 'Partner Approval Rate' },
+                  { value: '100%', label: 'Verified Professionals' },
+                  { value: '45+', label: 'Cities Covered' },
+                ].map((m, i) => (
+                  <div key={i} className="bg-white rounded-xl p-4 text-center shadow-sm">
+                    <p className="text-2xl font-bold text-primary">{m.value}</p>
+                    <p className="text-xs text-gray-500 mt-1">{m.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ===== HOW IT WORKS ===== */}
-      <section className="py-16 sm:py-20 bg-gray-light" id="how-it-works">
+      <section className="py-16 sm:py-24" id="how-it-works">
         <div className="max-w-7xl mx-auto px-4">
-          <SectionHeading
-            badge="How It Works"
-            title="From First Call to Daily Care — In 6 Simple Steps"
-            subtitle="We've designed a process that's thorough yet simple. Because you already have enough on your plate."
-          />
+          <div className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-bold font-serif text-navy">How ServiceGTD Works</h2>
+            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+              From first conversation to ongoing care, we handle every detail with precision and empathy.
+            </p>
+          </div>
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {howItWorksSteps.map((step) => (
-              <div key={step.step} className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all group">
-                <div className="w-12 h-12 rounded-full bg-primary-50 text-primary font-bold text-lg flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+            {[
+              {
+                step: 1,
+                title: 'Requirement Intake',
+                desc: 'Share your parents\' needs through a guided consultation — medical history, daily routine, personality, and your specific concerns.',
+                tags: ['Free 30-min consultation', 'No obligation', 'Completely confidential'],
+                color: 'bg-primary',
+              },
+              {
+                step: 2,
+                title: 'Curated Recommendations',
+                desc: 'Receive a personalized care plan with vetted partners matched precisely to your family\'s requirements and budget.',
+                tags: ['3-5 verified options', 'Transparent pricing', 'Detailed profiles'],
+                color: 'bg-teal',
+              },
+              {
+                step: 3,
+                title: 'Partner Selection',
+                desc: 'Review profiles, watch video introductions, and select the best-fit service provider for your parents.',
+                tags: ['Video introductions', 'Background verification', 'Flexible options'],
+                color: 'bg-primary',
+              },
+              {
+                step: 4,
+                title: 'Service Setup',
+                desc: 'We coordinate onboarding, scheduling, and introductions — ensuring a smooth, comfortable start for your parents.',
+                tags: ['Seamless coordination', 'Direct introduction', 'Clear expectations'],
+                color: 'bg-teal',
+              },
+              {
+                step: 5,
+                title: 'Ongoing Monitoring',
+                desc: 'Continuous support with a dedicated Care Manager, regular check-ins, and 24/7 availability for emergencies.',
+                tags: ['24/7 WhatsApp support', 'Weekly video updates', 'Quality assurance'],
+                color: 'bg-primary',
+              },
+              {
+                step: 6,
+                title: 'Care Optimization',
+                desc: 'Regular health assessments and proactive adjustments to ensure the best possible care outcomes over time.',
+                tags: ['Monthly reviews', 'Feedback integration', 'Adaptive care plans'],
+                color: 'bg-teal',
+              },
+            ].map((step) => (
+              <div key={step.step} className="bg-white rounded-[14px] border border-gray-100 p-6 hover:shadow-lg transition-all">
+                <div className={`w-10 h-10 rounded-full ${step.color} text-white font-bold text-sm flex items-center justify-center mb-4`}>
                   {step.step}
                 </div>
-                <h3 className="text-lg font-bold text-navy mb-2">{step.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{step.description}</p>
-                <p className="mt-3 text-xs text-teal font-medium bg-teal-50 inline-block px-3 py-1 rounded-full">{step.detail}</p>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-10">
-            <Link to="/how-it-works" className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all">
-              Learn more about our process <HiArrowRight />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== TRUST & ETHICS ===== */}
-      <section className="py-16 sm:py-20 bg-navy text-white" id="trust">
-        <div className="max-w-7xl mx-auto px-4">
-          <SectionHeading
-            badge="Trust & Ethics"
-            title="Built on Trust, Driven by Ethics"
-            subtitle="You're trusting us with the most precious people in your life. We don't take that lightly."
-            light
-          />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: <HiShieldCheck className="w-7 h-7" />, title: 'Rigorous Verification', desc: '6-step partner verification. Only 12% of applicants qualify. Background checks, skill tests, and in-person evaluations.' },
-              { icon: <HiHeart className="w-7 h-7" />, title: 'Ethics First', desc: 'No upselling. No unnecessary services. Our Care Advisors recommend what your parents actually need — nothing more.' },
-              { icon: <HiUserGroup className="w-7 h-7" />, title: 'Privacy Protected', desc: 'Your family data is encrypted and never shared. We comply with Indian data protection regulations.' },
-              { icon: <HiClock className="w-7 h-7" />, title: 'Advisory-First', desc: 'Every engagement starts with a free, no-obligation consultation. We believe in earning your trust before your business.' },
-            ].map((card, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition">
-                <div className="w-12 h-12 rounded-xl bg-primary/20 text-primary-light flex items-center justify-center mb-4">
-                  {card.icon}
-                </div>
-                <h3 className="font-bold text-white text-lg mb-2">{card.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{card.desc}</p>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-10">
-            <Link to="/trust-ethics" className="inline-flex items-center gap-2 text-primary-light font-semibold hover:text-white transition">
-              Explore our Trust Framework <HiArrowRight />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== PRICING ===== */}
-      <section className="py-16 sm:py-20" id="pricing">
-        <div className="max-w-7xl mx-auto px-4">
-          <SectionHeading
-            badge="Transparent Pricing"
-            title="Simple Plans. Honest Pricing. No Hidden Fees."
-            subtitle="Choose a plan that fits your parents' needs. Upgrade, downgrade, or cancel anytime."
-          />
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-            {pricingPlans.map((plan) => (
-              <div
-                key={plan.name}
-                className={`rounded-2xl p-6 sm:p-8 transition-all ${plan.popular ? 'bg-primary text-white shadow-xl shadow-primary/25 scale-[1.02] ring-2 ring-primary' : 'bg-white border border-gray-200 hover:shadow-lg'}`}
-              >
-                {plan.popular && (
-                  <span className="inline-block bg-white/20 text-white text-xs font-bold tracking-wide uppercase px-3 py-1 rounded-full mb-4">
-                    Most Popular
-                  </span>
-                )}
-                <h3 className={`text-2xl font-bold font-serif ${plan.popular ? 'text-white' : 'text-navy'}`}>{plan.name}</h3>
-                <p className={`text-sm mt-1 ${plan.popular ? 'text-white/80' : 'text-gray-500'}`}>{plan.subtitle}</p>
-                <div className="mt-4 mb-4">
-                  <span className={`text-4xl font-bold ${plan.popular ? 'text-white' : 'text-navy'}`}>₹{plan.price}</span>
-                  <span className={`text-sm ${plan.popular ? 'text-white/70' : 'text-gray-500'}`}>{plan.period}</span>
-                </div>
-                <p className={`text-sm mb-6 ${plan.popular ? 'text-white/80' : 'text-gray-600'}`}>{plan.description}</p>
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((f, i) => (
-                    <li key={i} className={`flex items-start gap-2 text-sm ${plan.popular ? 'text-white/90' : 'text-gray-700'}`}>
-                      <span className={`mt-1 w-4 h-4 rounded-full flex items-center justify-center shrink-0 text-[10px] ${plan.popular ? 'bg-white/20 text-white' : 'bg-teal-50 text-teal'}`}>✓</span>
-                      {f}
-                    </li>
+                <h3 className="text-lg font-bold text-navy">Step {step.step} — {step.title}</h3>
+                <p className="text-sm text-gray-600 mt-2 leading-relaxed">{step.desc}</p>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {step.tags.map((tag, j) => (
+                    <span key={j} className="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">{tag}</span>
                   ))}
-                </ul>
-                <button
-                  onClick={() => setShowModal(true)}
-                  className={`w-full py-3 rounded-full font-semibold transition-all text-sm ${plan.popular ? 'bg-white text-primary hover:bg-gray-100' : 'bg-primary text-white hover:bg-primary-dark'}`}
-                >
-                  {plan.cta}
-                </button>
+                </div>
               </div>
             ))}
           </div>
-          <p className="text-center text-sm text-gray-500 mt-8">
-            All plans include a dedicated Care Manager. Custom plans available for complex needs. <br />
-            <strong>First week free</strong> — experience the care before committing.
-          </p>
         </div>
       </section>
 
       {/* ===== TESTIMONIALS ===== */}
-      <section className="py-16 sm:py-20 bg-gray-light" id="testimonials">
+      <section className="py-16 sm:py-24 bg-gray-light" id="testimonials">
         <div className="max-w-7xl mx-auto px-4">
-          <SectionHeading
-            badge="Real Stories"
-            title="Trusted by 5,000+ NRI Families Worldwide"
-            subtitle="Don't take our word for it. Hear from families who found peace of mind with ServiceGTD."
-          />
+          <div className="text-center mb-4">
+            <p className="text-sm font-semibold text-primary tracking-wide uppercase">Community Voices</p>
+          </div>
+          <div className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-bold font-serif text-navy">Trusted by 5,000+ NRI Families</h2>
+            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+              Real stories from families who found peace of mind through ServiceGTD.
+            </p>
+          </div>
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.slice(0, 6).map((t, i) => (
+            {testimonials.slice(0, 3).map((t, i) => (
               <TestimonialCard key={i} {...t} />
             ))}
+          </div>
+
+          {/* Stats */}
+          <div className="mt-14">
+            <StatsCounter
+              stats={[
+                { value: 4, suffix: '.9/5', label: 'Average Rating' },
+                { value: 5000, suffix: '+', label: 'Happy Families' },
+                { value: 98, suffix: '%', label: 'Satisfaction Rate' },
+              ]}
+            />
           </div>
         </div>
       </section>
 
-      {/* ===== FAQ PREVIEW ===== */}
-      <section className="py-16 sm:py-20">
-        <div className="max-w-3xl mx-auto px-4">
-          <SectionHeading
-            badge="FAQ"
-            title="Questions We Get Asked a Lot"
-            subtitle="Can't find your answer? We're just a WhatsApp message away."
-          />
-          <FAQAccordion items={faqs} limit={5} />
-          <div className="text-center mt-8 space-y-3">
-            <Link to="/faq" className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all">
-              View All FAQs <HiArrowRight />
-            </Link>
-            <p className="text-sm text-gray-500">
-              Or{' '}
-              <a href="https://wa.me/911234567890" className="text-green-600 font-medium inline-flex items-center gap-1">
-                <FaWhatsapp className="w-3.5 h-3.5" /> WhatsApp us
-              </a>{' '}
-              — we typically reply in under 5 minutes.
+      {/* ===== BLOG ===== */}
+      <section className="py-16 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-4">
+            <p className="text-sm font-semibold text-primary tracking-wide uppercase">Resources &amp; Insights</p>
+          </div>
+          <div className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-bold font-serif text-navy">From Our Blog</h2>
+            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+              Expert advice, care tips, and insights to help you make informed decisions for your family.
             </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {blogPosts.slice(0, 3).map((post) => (
+              <Link
+                key={post.slug}
+                to={`/blog/${post.slug}`}
+                className="group rounded-[14px] border border-primary/10 bg-white overflow-hidden shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1)] hover:shadow-xl transition-all"
+              >
+                <div className="aspect-[16/10] bg-gradient-to-br from-primary-50 to-teal-50 flex items-center justify-center overflow-hidden">
+                  <span className="text-6xl opacity-30 group-hover:scale-110 transition-transform duration-300">
+                    {post.image === 'surgery' ? '🏥' : post.image === 'caretaker' ? '👩‍⚕️' : '💊'}
+                  </span>
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
+                    <span>{post.date}</span>
+                  </div>
+                  <h3 className="font-bold text-navy group-hover:text-primary transition">{post.title}</h3>
+                  <p className="text-sm text-gray-600 mt-2 leading-relaxed line-clamp-3">{post.excerpt}</p>
+                  <span className="inline-flex items-center gap-1 mt-4 text-sm font-semibold text-primary group-hover:gap-2 transition-all">
+                    Read More <HiArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="text-center mt-10">
+            <Link to="/blog" className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all">
+              View All Articles <HiArrowRight />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FAQ ===== */}
+      <section className="py-16 sm:py-24 bg-gray-light" id="faq">
+        <div className="max-w-3xl mx-auto px-4">
+          <div className="text-center mb-4">
+            <p className="text-sm font-semibold text-primary tracking-wide uppercase">Have Questions?</p>
+          </div>
+          <div className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-bold font-serif text-navy">Frequently Asked Questions</h2>
+            <p className="mt-4 text-gray-600 max-w-xl mx-auto">
+              Get answers to common questions about our services, processes, and care approach.
+            </p>
+          </div>
+
+          <FAQAccordion items={faqs} limit={8} />
+
+          {/* Still have questions */}
+          <div className="mt-14 text-center bg-white rounded-2xl p-8 shadow-sm">
+            <h3 className="text-xl font-bold text-navy">Still Have Questions?</h3>
+            <p className="text-gray-600 mt-2 text-sm">
+              Our care advisors are here to help. Schedule a free consultation to discuss your specific needs.
+            </p>
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <button
+                onClick={() => setShowModal(true)}
+                className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-full font-semibold transition-all text-sm"
+              >
+                Talk to an Advisor
+              </button>
+              <a
+                href="https://wa.me/911234567890"
+                className="flex items-center gap-2 border border-gray-300 text-gray-700 hover:border-primary hover:text-primary px-6 py-3 rounded-full font-semibold transition text-sm"
+              >
+                <FaWhatsapp className="w-4 h-4" /> Write to Us
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ===== FINAL CTA ===== */}
-      <section className="py-16 sm:py-24 gradient-primary relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-white/10 rounded-full blur-3xl" />
-        </div>
-        <div className="max-w-4xl mx-auto px-4 text-center relative">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-serif text-white leading-tight">
-            Your Parents Deserve the Best Care.<br />
-            <span className="text-white/80">You Deserve Peace of Mind.</span>
-          </h2>
-          <p className="mt-6 text-lg text-white/80 max-w-2xl mx-auto">
-            One conversation can change everything. Talk to our Care Advisor today —
-            and take the first step toward worry-free living.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={() => setShowModal(true)}
-              className="w-full sm:w-auto bg-white text-primary hover:bg-gray-100 px-8 py-4 rounded-full text-lg font-bold transition-all hover:shadow-xl"
-            >
-              Schedule a Free Consultation
-            </button>
-            <a
-              href="tel:+911234567890"
-              className="w-full sm:w-auto border-2 border-white/50 text-white hover:bg-white/10 px-8 py-4 rounded-full text-lg font-semibold transition flex items-center justify-center gap-2"
-            >
-              📞 Call Us Now
-            </a>
+      <section className="py-16 sm:py-20">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="rounded-2xl p-8 sm:p-12 lg:p-16 text-center" style={{ background: 'linear-gradient(90deg, rgba(107,70,193,0.1) 0%, rgba(14,184,156,0.1) 100%)' }}>
+            <h2 className="text-3xl sm:text-4xl font-bold font-serif text-navy leading-tight">
+              Your Parents Deserve the Best Care.<br />
+              <span className="text-primary">You Deserve Peace of Mind.</span>
+            </h2>
+            <p className="mt-6 text-gray-600 max-w-2xl mx-auto">
+              No sales pressure. No obligations. Just a caring conversation about how we can support your family.
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-6 mt-8 text-sm text-gray-600">
+              <span className="flex items-center gap-1.5"><HiShieldCheck className="w-4 h-4 text-teal" /> Confidential Consultation</span>
+              <span className="flex items-center gap-1.5"><HiShieldCheck className="w-4 h-4 text-teal" /> Zero Commitment</span>
+              <span className="flex items-center gap-1.5"><HiShieldCheck className="w-4 h-4 text-teal" /> Same-Day Response</span>
+            </div>
+
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <button
+                onClick={() => setShowModal(true)}
+                className="w-full sm:w-auto bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full text-lg font-bold transition-all hover:shadow-xl hover:shadow-primary/25"
+              >
+                Schedule a Free Consultation
+              </button>
+              <a
+                href="tel:+911234567890"
+                className="w-full sm:w-auto border-2 border-gray-300 text-navy hover:border-primary hover:text-primary px-8 py-4 rounded-full text-lg font-semibold transition flex items-center justify-center gap-2"
+              >
+                📞 Call Us Now
+              </a>
+            </div>
+
+            <p className="mt-6 text-xs text-gray-400 flex items-center justify-center gap-1">
+              <HiLockClosed className="w-3.5 h-3.5" />
+              Your information is protected. We never share personal details and respect your privacy completely.
+            </p>
           </div>
-          <p className="mt-6 text-sm text-white/60">
-            Available 24/7 across all timezones. Hindi, English, Tamil, Telugu, Bengali, Marathi spoken.
-          </p>
         </div>
       </section>
 
