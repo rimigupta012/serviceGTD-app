@@ -15,8 +15,18 @@ export default function Home() {
   return (
     <>
       {/* ===== HERO ===== */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#0a0a14] via-[#12101f] to-[#1a1530] text-white">
-        <div className="absolute inset-0 opacity-20">
+      <section className="relative overflow-hidden text-white">
+        {/* Elder care background image */}
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=1920&q=80&auto=format&fit=crop"
+            alt=""
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a14]/80 via-[#12101f]/75 to-[#1a1530]/85" />
+        </div>
+        {/* Glow effects */}
+        <div className="absolute inset-0 pointer-events-none opacity-20">
           <div className="absolute top-10 left-1/4 w-96 h-96 bg-primary/30 rounded-full blur-[120px]" />
           <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-teal/20 rounded-full blur-[100px]" />
         </div>
